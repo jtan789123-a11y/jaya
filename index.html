@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Gosok & Menang - Tawaran Eksklusif</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="ambient ambient-one" aria-hidden="true"></div><div class="ambient ambient-two" aria-hidden="true"></div>
+<main class="wrap">
+  <div class="topline"><span>✦ EMERALD GOLD EDITION</span><span>GOSOK & MENANG <span class="topstar">✧</span></span></div>
+
+  <!-- Company name (set in script.js) -->
+  <div class="brand" id="company"></div>
+
+  
+  <div class="badge">👑 EKSKLUSIVE AHLI BAHARU</div>
+  <h1>Gosok Kad Bertuah &amp; <span>Tebus Ganjaran Anda</span></h1>
+  <p class="sub">Sapu jari anda di atas permukaan kad emas di bawah untuk membuka hadiah selamat datang hari ini.</p>
+
+  <div class="card-label">✦ KAD EMAS MISTERI ✦</div>
+  <div class="card" id="card">
+    <div class="inner">
+      <div class="prize">
+        <div class="congrats">⭐ TAHNIAH ANDA MENANG ⭐</div>
+        <strong>50% WELCOME BONUS</strong>
+        <span>TRY WITH RM50 DULU</span>
+        <em>Promo Code: STYLE50</em>
+      </div>
+      <canvas id="scratch" aria-label="Scratch card"></canvas>
+      <div class="shine" id="shine"></div>
+      <div class="hint" id="hint"><i>👆</i><b>GOSOK DI SINI UNTUK TEBUS</b></div>
+    </div>
+  </div>
+
+  <p class="card-caption">✦ GOSOK UNTUK DEDAHKAN GANJARAN ✦</p>
+  <div class="progress">
+    <div class="row"><span>Tahap Terbuka: <b id="pct">0</b>%</span><span class="timer" id="timerWrap" hidden>Offer ends in: <b id="timer">--:--</b></span></div>
+    <div class="bar"><div id="fill"></div></div>
+  </div>
+
+  <button class="skip" id="skip"><i>🎁</i> Ketik untuk terus dedahkan ganjaran</button>
+<!-- Rotating activity: sample entries clearly marked; real claims configured in script.js -->
+ <div class="ticker" id="ticker" hidden> <span class="live-dot"></span> <span class="claim-message" id="tickerText"></span> </div>
+  <footer>
+    18+ Main secara bertanggungjawab · Tertakluk Terma &amp; Syarat<br>
+    © <span id="year"></span> Hak Cipta Terpelihara. Semua promosi dihadkan kepada 1 akaun bagi setiap pengguna sah.
+  </footer>
+</main>
+
+<!-- Popup after scratching -->
+<div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+  <div class="modal">
+    <div class="modal-eyebrow">✦ GANJARAN EKSKLUSIF ✦</div>
+    <button class="close" id="close" aria-label="Close">×</button>
+    <div class="crown">👑</div>
+    <h2 id="mTitle">TAHNIAH</h2>
+    <div class="countdown">
+        <span>◷</span>
+        <span>Tawaran tamat dalam: <b id="popupTimer">05:00</b></span>
+    </div>
+    <p>Kad anda berjaya disahkan. Bonus eksklusif anda sedia untuk ditebus sekarang!</p>
+    <div class="won"><b>50% WELCOME BONUS</b>Try with RM50 dulu<small>Promo Code: STYLE50</small></div>
+    <!-- Register link: set REGISTER_URL in script.js (empty for now) -->
+    <a class="btn" id="register" href="">DAFTAR &amp; TEBUS SEKARANG -></a>
+    <div class="note">⚡ Pendaftaran memerlukan kurang daripada 30 saat.</div>
+  </div>
+</div>
+
+<div id="coinRain" aria-hidden="true"></div><canvas id="fx" aria-hidden="true"></canvas>
+<script src="script.js"></script>
+</body>
+</html>

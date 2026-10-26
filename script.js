@@ -65,7 +65,7 @@ if (REGISTER_URL) $('register').href = REGISTER_URL;
     const name = typeof record === 'string' ? record : String(record.name || 'Pengguna');
     const voucher = typeof record === 'string' ? '50% Welcome Bonus' : String(record.voucher || 'voucher');
     text.replaceChildren();
-    if (!verified){const label=document.createElement('span');label.className='activity-label';label.textContent='Contoh aktiviti';text.append(label);}
+    if (!verified){const label=document.createElement('span');label.className='activity-label';}
     const person=document.createElement('b');person.textContent=name;
     const reward=document.createElement('b');reward.textContent=voucher;
     text.append(person,document.createTextNode(' telah menebus '),reward,document.createTextNode(' 🎁'));

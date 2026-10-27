@@ -1,6 +1,6 @@
 /* ====== CONFIG ====== */
 const COMPANY_NAME = "";   // e.g. "Your Brand"
-const REGISTER_URL = "https://jayakaya99a.com";   // e.g. "https://yourshop.com/register"
+const REGISTER_URL = "https://jayakaya99a.com/?utm_source=jk1668";   // e.g. "https://yourshop.com/register"
 const REVEAL_AT    = 55;   // % scratched before popup opens
 const OFFER_END    = "";   // real end date, e.g. "2026-12-31T23:59:59" (empty = timer hidden)
 // Use verified claim records here when available. Empty means labeled illustrative samples below.

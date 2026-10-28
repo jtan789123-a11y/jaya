@@ -4,7 +4,7 @@ const REGISTER_URL = "https://jayakaya99a.com/?utm_source=jk1668";   // e.g. "ht
 const REVEAL_AT    = 55;   // % scratched before popup opens
 const OFFER_END    = "";   // real end date, e.g. "2026-12-31T23:59:59" (empty = timer hidden)
 // Use verified claim records here when available. Empty means labeled illustrative samples below.
-const TICKER_ITEMS = []; // e.g. [{name:"Aina",voucher:"50% Welcome Bonus"}]
+const TICKER_ITEMS = []; // e.g. [{name:"Aina",voucher:"RM99 Welcome Bonus"}]
 const SAMPLE_CLAIM_NAMES = ["Aina", "Amir", "Siti", "Daniel", "Farah", "Haziq", "Mei Ling", "Nadia", "Kumar", "Izzat", "Sarah", "Hakim"];
 /* ==================== */
 
@@ -61,9 +61,9 @@ if (REGISTER_URL) $('register').href = REGISTER_URL;
     let index = Math.floor(Math.random() * items.length);
     if (items.length > 1 && index === lastIndex) index = (index + 1) % items.length;
     lastIndex = index;
-    const record = verified ? items[index] : {name:items[index],voucher:'50% Welcome Bonus'};
+    const record = verified ? items[index] : {name:items[index],voucher:'RM99 Welcome Bonus'};
     const name = typeof record === 'string' ? record : String(record.name || 'Pengguna');
-    const voucher = typeof record === 'string' ? '50% Welcome Bonus' : String(record.voucher || 'voucher');
+    const voucher = typeof record === 'string' ? 'RM99 Welcome Bonus' : String(record.voucher || 'voucher');
     text.replaceChildren();
     if (!verified){const label=document.createElement('span');label.className='activity-label';}
     const person=document.createElement('b');person.textContent=name;

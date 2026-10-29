@@ -61,9 +61,9 @@ if (REGISTER_URL) $('register').href = REGISTER_URL;
     let index = Math.floor(Math.random() * items.length);
     if (items.length > 1 && index === lastIndex) index = (index + 1) % items.length;
     lastIndex = index;
-    const record = verified ? items[index] : {name:items[index],voucher:'RM99 Welcome Bonus'};
+    const record = verified ? items[index] : {name:items[index],voucher:'FREE RM99'};
     const name = typeof record === 'string' ? record : String(record.name || 'Pengguna');
-    const voucher = typeof record === 'string' ? 'RM99 Welcome Bonus' : String(record.voucher || 'voucher');
+    const voucher = typeof record === 'string' ? 'FREE RM99' : String(record.voucher || 'voucher');
     text.replaceChildren();
     if (!verified){const label=document.createElement('span');label.className='activity-label';}
     const person=document.createElement('b');person.textContent=name;

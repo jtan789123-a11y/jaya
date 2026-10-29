@@ -271,15 +271,18 @@ h1 span {
   align-items: center;
   justify-content: center;
   padding: 8px;
-  color: #124c38;
   text-align: center;
-  background: radial-gradient(
-    circle at 50% 35%,
-    #fff8d5 0%,
-    #f1d889 65%,
-    #d8aa45 100%
+
+  /* Same dark green as website background */
+  background: linear-gradient(
+    180deg,
+    #083b2b 0%,
+    #03150f 100%
   );
+
+  color: #fff1b7;
 }
+
 
 .congrats {
   margin-bottom: 5px;
@@ -1031,4 +1034,24 @@ footer {
     transition: none !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* FIX REWARD TEXT VISIBILITY */
+
+.prize .congrats {
+  color: #FFD76A !important;
+  text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+}
+
+.prize strong {
+  color: #FFF1B7 !important;
+  -webkit-text-fill-color: #FFF1B7 !important;
+  background: none !important;
+  text-shadow: 0 3px 8px rgba(0,0,0,0.5) !important;
+}
+
+.prize span {
+  color: #FFD76A !important;
+  -webkit-text-fill-color: #FFD76A !important;
+  text-shadow: 0 2px 5px rgba(0,0,0,0.5);
 }

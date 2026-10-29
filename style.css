@@ -259,3 +259,370 @@ footer{width:100%;font-size:.67rem;line-height:1.55;padding-top:14px;margin-top:
 .falling-coin{box-sizing:border-box;width:var(--size);height:var(--size);font-family:Georgia,serif;font-size:calc(var(--size) * .34);font-weight:900;letter-spacing:-.07em;line-height:1;border:2px solid #ffe89b;border-radius:50%;color:#8a4c0d;text-shadow:0 1px 0 #ffe9a0;background:radial-gradient(ellipse at 30% 22%,#fff5b5 0%,#ffdf68 22%,#d99524 60%,#8f4b0a 100%);box-shadow:inset 0 0 0 2px #a96b1d,inset 0 0 0 4px #ffdc71,inset -3px -4px 5px #77400a88,0 2px 8px #ffd35b55;transform-style:preserve-3d}
 .falling-coin::before{content:"";position:absolute;inset:19%;border:1px dashed #9b5a15;border-radius:50%;pointer-events:none}
 .falling-coin::after{content:"";position:absolute;inset:5%;border:1px solid #fff4b37a;border-radius:50%;pointer-events:none}
+
+/* Smooth, solid scratch-card interaction */
+#scratch {
+    opacity: 1;
+    transition: none;
+    touch-action: none;
+    cursor: crosshair;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.inner {
+    isolation: isolate;
+}
+
+.prize {
+    z-index: 0;
+}
+
+#scratch {
+    z-index: 2;
+}
+
+.shine {
+    z-index: 3;
+}
+
+.hint {
+    z-index: 4;
+}
+
+.inner {
+    position: relative;
+    isolation: isolate;
+}
+
+.prize {
+    z-index: 1;
+}
+
+#scratch {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    display: block;
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+    transition: none;
+    touch-action: none;
+}
+
+.shine {
+    z-index: 3;
+    pointer-events: none;
+}
+
+.hint {
+    z-index: 4;
+    pointer-events: none;
+}
+
+/* Compact responsive layout for all phones */
+html {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100dvh;
+    padding: 12px 14px 16px;
+    overflow-x: hidden;
+}
+
+.wrap {
+    width: 100%;
+    max-width: 440px;
+    margin: 0 auto;
+    gap: 0;
+}
+
+/* Header */
+.topline {
+    margin-bottom: 10px !important;
+    padding-bottom: 8px !important;
+    font-size: 9px;
+}
+
+.brand {
+    font-size: 0.9rem;
+    margin-bottom: 7px;
+}
+
+.badge {
+    margin-bottom: 8px;
+    padding: 6px 12px;
+    font-size: 0.6rem;
+}
+
+h1 {
+    font-size: clamp(1.65rem, 7vw, 2.4rem);
+    line-height: 1.08;
+    margin: 0 0 8px;
+}
+
+.sub {
+    max-width: 360px;
+    font-size: 0.78rem;
+    line-height: 1.45;
+    margin: 0 auto 12px;
+}
+
+/* Scratch card */
+.card-label {
+    font-size: 0.62rem;
+    letter-spacing: 0.15em;
+    margin-bottom: 7px !important;
+}
+
+.card {
+    width: 100%;
+    max-width: 440px;
+    aspect-ratio: 1.65 !important;
+    padding: 5px;
+    border-radius: 18px;
+}
+
+.inner {
+    border-radius: 13px;
+}
+
+.prize {
+    padding: 8px;
+}
+
+.congrats {
+    font-size: clamp(0.55rem, 2.5vw, 0.7rem);
+    margin-bottom: 4px;
+}
+
+.prize strong {
+    font-size: clamp(1.45rem, 6.5vw, 2.2rem);
+    line-height: 1;
+}
+
+.prize span {
+    font-size: clamp(0.72rem, 3vw, 0.9rem);
+    margin-top: 4px;
+}
+
+.prize em {
+    font-size: 0.65rem;
+    margin-top: 6px;
+    padding: 4px 8px;
+}
+
+.hint {
+    gap: 7px;
+}
+
+.hint i {
+    width: 43px;
+    height: 43px;
+    font-size: 1.3rem;
+    border-width: 2px;
+}
+
+.hint b {
+    max-width: 90%;
+    padding: 7px 10px;
+    font-size: clamp(0.58rem, 2.6vw, 0.72rem);
+    letter-spacing: 0.07em;
+}
+
+.card-caption {
+    margin-top: 8px;
+    font-size: 0.58rem;
+    letter-spacing: 0.09em;
+}
+
+/* Progress and buttons */
+.progress {
+    margin-top: 10px;
+    font-size: 0.7rem;
+}
+
+.bar {
+    height: 6px;
+    margin-top: 6px;
+}
+
+.skip {
+    width: 100%;
+    max-width: 440px;
+    margin: 10px 0 8px;
+    padding: 11px 12px;
+    font-size: 0.78rem;
+    border-radius: 11px;
+}
+
+.ticker {
+    width: 100%;
+    max-width: 440px;
+    min-height: 36px;
+    margin: 2px 0 8px !important;
+    padding: 8px 10px !important;
+    gap: 6px;
+    font-size: 0.67rem;
+    line-height: 1.35;
+    border-radius: 10px;
+    white-space: normal;
+}
+
+footer {
+    margin-top: 3px;
+    padding-top: 8px;
+    font-size: 0.6rem;
+    line-height: 1.4;
+}
+
+/* Smaller popup on mobile */
+.overlay {
+    padding: 10px;
+}
+
+.modal {
+    width: 100%;
+    max-width: 320px;
+    max-height: calc(100dvh - 20px);
+    padding: 19px 15px 16px;
+    border-radius: 18px;
+}
+
+.crown {
+    font-size: 1.8rem;
+    margin: 4px 0;
+}
+
+.modal h2 {
+    font-size: clamp(1.25rem, 6vw, 1.65rem);
+    line-height: 1.15;
+    margin: 4px 0 6px;
+}
+
+.modal p {
+    font-size: 0.78rem;
+    line-height: 1.4;
+    margin-bottom: 10px;
+}
+
+.countdown {
+    font-size: 0.7rem;
+    padding: 6px 10px;
+    margin: 6px auto 10px;
+}
+
+.won {
+    padding: 11px 9px;
+    margin-bottom: 12px;
+    border-radius: 11px;
+}
+
+.won b {
+    font-size: clamp(1.35rem, 6vw, 1.8rem);
+}
+
+.won small {
+    font-size: 0.68rem;
+}
+
+.btn {
+    padding: 12px 9px;
+    font-size: 0.78rem;
+}
+
+.note {
+    margin-top: 8px;
+    font-size: 0.65rem;
+}
+
+/* Short phone screens */
+@media (max-height: 740px) {
+    body {
+        padding-top: 8px;
+        padding-bottom: 10px;
+    }
+
+    .topline {
+        margin-bottom: 7px !important;
+    }
+
+    .brand {
+        margin-bottom: 5px;
+    }
+
+    .badge {
+        margin-bottom: 6px;
+    }
+
+    h1 {
+        font-size: clamp(1.5rem, 6vw, 2rem);
+        margin-bottom: 6px;
+    }
+
+    .sub {
+        font-size: 0.72rem;
+        margin-bottom: 9px;
+    }
+
+    .card {
+        aspect-ratio: 1.8 !important;
+    }
+
+    .card-caption {
+        margin-top: 6px;
+    }
+
+    .progress {
+        margin-top: 7px;
+    }
+
+    .skip {
+        margin: 7px 0 5px;
+        padding: 9px;
+    }
+
+    .ticker {
+        margin-bottom: 5px !important;
+        padding: 6px 9px !important;
+        min-height: 30px;
+    }
+
+    footer {
+        padding-top: 5px;
+    }
+}
+
+/* Very narrow phones */
+@media (max-width: 360px) {
+    body {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    h1 {
+        font-size: 1.55rem;
+    }
+
+    .sub {
+        font-size: 0.7rem;
+    }
+
+    .card {
+        aspect-ratio: 1.5 !important;
+    }
+
+    .prize strong {
+        font-size: 1.35rem;
+    }
+
+    .hint b {
+        font-size: 0.55rem;
+        padding: 6px 8px;
+    }
+}

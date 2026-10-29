@@ -1,6 +1,6 @@
 /* ====== CONFIG ====== */
 const COMPANY_NAME = "";   // e.g. "Your Brand"
-const REGISTER_URL = "https://jayakaya99a.com/?utm_source=jk1668";   // e.g. "https://yourshop.com/register"
+const REGISTER_URL = "https://jayakaya99a.com/register/SMSRegister?utm_source=jk1668";   // e.g. "https://yourshop.com/register"
 const REVEAL_AT    = 55;   // % scratched before popup opens
 const OFFER_END    = "";   // real end date, e.g. "2026-12-31T23:59:59" (empty = timer hidden)
 // Use verified claim records here when available. Empty means labeled illustrative samples below.
@@ -94,30 +94,68 @@ if (OFFER_END){
 }
 
 /* scratch layer */
-function paintCover(){
-  const r = canvas.getBoundingClientRect(), d = window.devicePixelRatio || 1;
-  canvas.width = r.width * d; canvas.height = r.height * d;
-  lastW = r.width;
-  ctx.setTransform(d,0,0,d,0,0);
-  ctx.globalCompositeOperation = 'source-over';   // cover must be drawn normally, not as an eraser
-  const w = r.width, h = r.height;
-  // solid metallic gold base (fully opaque)
-  const g = ctx.createLinearGradient(0,0,w,h);
-  g.addColorStop(0,'#c9962b'); g.addColorStop(.25,'#f2cf6b'); g.addColorStop(.5,'#b8821c');
-  g.addColorStop(.75,'#f0c960'); g.addColorStop(1,'#8f6414');
-  ctx.fillStyle = g; ctx.fillRect(0,0,w,h);
-  // bold diagonal stripes (dark + light) for a foil look
-  for (let i = -h; i < w; i += 22){
-    ctx.fillStyle = 'rgba(90,55,0,.28)';
-    ctx.beginPath(); ctx.moveTo(i,h); ctx.lineTo(i+h,0); ctx.lineTo(i+h+8,0); ctx.lineTo(i+8,h); ctx.fill();
-    ctx.fillStyle = 'rgba(255,245,200,.35)';
-    ctx.beginPath(); ctx.moveTo(i+11,h); ctx.lineTo(i+h+11,0); ctx.lineTo(i+h+15,0); ctx.lineTo(i+15,h); ctx.fill();
-  }
-  // fine speckle texture
-  for (let n = 0; n < w * h / 40; n++){
-    ctx.fillStyle = Math.random() < .5 ? 'rgba(255,255,255,.22)' : 'rgba(80,45,0,.22)';
-    ctx.fillRect(Math.random() * w, Math.random() * h, 1.5, 1.5);
-  }
+
+function paintCover() {
+    const r = canvas.getBoundingClientRect();
+    const d = window.devicePixelRatio || 1;
+
+    canvas.width = Math.round(r.width * d);
+    canvas.height = Math.round(r.height * d);
+
+    lastW = r.width;
+    ctx.setTransform(d, 0, 0, d, 0, 0);
+
+    ctx.globalAlpha = 1;
+    ctx.globalCompositeOperation = 'source-over';
+
+    const w = r.width;
+    const h = r.height;
+
+    // Solid metallic gold base
+    const g = ctx.createLinearGradient(0, 0, w, h);
+    g.addColorStop(0, '#b98019');
+    g.addColorStop(0.25, '#f5d477');
+    g.addColorStop(0.5, '#c7952e');
+    g.addColorStop(0.75, '#f8df8a');
+    g.addColorStop(1, '#a36b15');
+
+    ctx.fillStyle = g;
+    ctx.fillRect(0, 0, w, h);
+
+    // Strong diagonal metallic stripes
+    for (let i = -h; i < w + h; i += 22) {
+        ctx.fillStyle = 'rgba(90, 48, 0, 0.32)';
+        ctx.beginPath();
+        ctx.moveTo(i, h);
+        ctx.lineTo(i + h, 0);
+        ctx.lineTo(i + h + 9, 0);
+        ctx.lineTo(i + 9, h);
+        ctx.closePath();
+        ctx.fill();
+
+        ctx.fillStyle = 'rgba(255, 248, 210, 0.4)';
+        ctx.beginPath();
+        ctx.moveTo(i + 11, h);
+        ctx.lineTo(i + h + 11, 0);
+        ctx.lineTo(i + h + 15, 0);
+        ctx.lineTo(i + 15, h);
+        ctx.closePath();
+        ctx.fill();
+    }
+
+    // Gold foil texture
+    for (let n = 0; n < w * h / 40; n++) {
+        ctx.fillStyle = Math.random() < 0.5
+            ? 'rgba(255,255,255,0.22)'
+            : 'rgba(80,45,0,0.22)';
+
+        ctx.fillRect(
+            Math.random() * w,
+            Math.random() * h,
+            1.5,
+            1.5
+        );
+    }
   // inner border
   ctx.strokeStyle = 'rgba(80,45,0,.55)'; ctx.lineWidth = 3; ctx.strokeRect(6,6,w-12,h-12);
 }
@@ -125,19 +163,33 @@ function pos(e){
   const r = canvas.getBoundingClientRect(), t = e.touches ? e.touches[0] : e;
   return { x: t.clientX - r.left, y: t.clientY - r.top };
 }
-function scratch(e){
-  if (!drawing || done) return;
-  e.preventDefault();
-  const p = pos(e);
-  ctx.globalCompositeOperation = 'destination-out';
-  ctx.globalAlpha = 0.45; // less transparent per scratch stroke
-  ctx.beginPath(); ctx.arc(p.x, p.y, 24, 0, Math.PI * 2); ctx.fill();
-  ctx.globalAlpha = 1;
-  hint.classList.add('hide'); $('shine').classList.add('hide');
-  const t = e.touches ? e.touches[0] : e; sparkle(t.clientX, t.clientY);
-  const now = Date.now();
-  if (now - lastCheck > 80){ lastCheck = now; measure(); }
+
+function scratch(e) {
+    if (!drawing || done) return;
+
+    e.preventDefault();
+
+    const p = pos(e);
+
+    ctx.globalCompositeOperation = 'destination-out';
+    ctx.globalAlpha = 1;
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, 45, 0, Math.PI * 2);
+    ctx.fill();
+
+    hint.classList.add('hide');
+    $('shine').classList.add('hide');
+
+    const t = e.touches ? e.touches[0] : e;
+    sparkle(t.clientX, t.clientY);
+
+    const now = Date.now();
+    if (now - lastCheck > 80) {
+        lastCheck = now;
+        measure();
+    }
 }
+
 function measure(){
   const data = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
   let clear = 0, total = 0;

@@ -73,9 +73,49 @@ if (REGISTER_URL) $('register').href = REGISTER_URL;
   }
   ticker.hidden = false;
   showClaim();
-  if (!matchMedia('(prefers-reduced-motion: reduce)').matches){
-    setInterval(()=>{text.classList.add('changing');setTimeout(showClaim,250);},4300);
+  
+if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+
+  text.style.transition = "none";
+  text.style.opacity = "1";
+  text.style.transform = "translateY(0)";
+
+  function animateTicker() {
+
+    // Smoothly slide old message upward
+    text.style.transition =
+      "opacity 250ms ease, transform 250ms ease";
+
+    text.style.opacity = "0";
+    text.style.transform = "translateY(-8px)";
+
+    setTimeout(() => {
+
+      // Keep your original message generation
+      showClaim();
+
+      // Position next message below, invisible
+      text.style.transition = "none";
+      text.style.opacity = "0";
+      text.style.transform = "translateY(8px)";
+
+      // Animate new message into place
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          text.style.transition =
+            "opacity 350ms ease-out, transform 350ms ease-out";
+
+          text.style.opacity = "1";
+          text.style.transform = "translateY(0)";
+        });
+      });
+
+    }, 250);
   }
+
+  setInterval(animateTicker, 4500);
+}
+
 }
 
 /* countdown to a real end date */
@@ -96,69 +136,52 @@ if (OFFER_END){
 /* scratch layer */
 
 function paintCover() {
-    const r = canvas.getBoundingClientRect();
-    const d = window.devicePixelRatio || 1;
+  const r = canvas.getBoundingClientRect();
+  if (!r.width || !r.height) return;
 
-    canvas.width = Math.round(r.width * d);
-    canvas.height = Math.round(r.height * d);
+  const d = window.devicePixelRatio || 1;
+  canvas.width = Math.round(r.width * d);
+  canvas.height = Math.round(r.height * d);
 
-    lastW = r.width;
-    ctx.setTransform(d, 0, 0, d, 0, 0);
+  lastW = r.width;
+  ctx.setTransform(d, 0, 0, d, 0, 0);
+  ctx.globalCompositeOperation = "source-over";
+  ctx.globalAlpha = 1;
 
-    ctx.globalAlpha = 1;
-    ctx.globalCompositeOperation = 'source-over';
+  const w = r.width;
+  const h = r.height;
 
-    const w = r.width;
-    const h = r.height;
+  // Bright metallic gold
+  const gold = ctx.createLinearGradient(0, 0, w, h);
+  gold.addColorStop(0, "#D99B22");
+  gold.addColorStop(0.25, "#FFE68A");
+  gold.addColorStop(0.5, "#F7CA4C");
+  gold.addColorStop(0.75, "#FFE88F");
+  gold.addColorStop(1, "#C58A1C");
 
-    // Solid metallic gold base
-    const g = ctx.createLinearGradient(0, 0, w, h);
-    g.addColorStop(0, '#b98019');
-    g.addColorStop(0.25, '#f5d477');
-    g.addColorStop(0.5, '#c7952e');
-    g.addColorStop(0.75, '#f8df8a');
-    g.addColorStop(1, '#a36b15');
+  ctx.fillStyle = gold;
+  ctx.fillRect(0, 0, w, h);
 
-    ctx.fillStyle = g;
-    ctx.fillRect(0, 0, w, h);
+  // Subtle diagonal gold stripes
+  ctx.save();
+  ctx.strokeStyle = "rgba(255,255,255,0.10)";
+  ctx.lineWidth = 7;
 
-    // Strong diagonal metallic stripes
-    for (let i = -h; i < w + h; i += 22) {
-        ctx.fillStyle = 'rgba(90, 48, 0, 0.32)';
-        ctx.beginPath();
-        ctx.moveTo(i, h);
-        ctx.lineTo(i + h, 0);
-        ctx.lineTo(i + h + 9, 0);
-        ctx.lineTo(i + 9, h);
-        ctx.closePath();
-        ctx.fill();
+  for (let x = -h; x < w + h; x += 19) {
+    ctx.beginPath();
+    ctx.moveTo(x, 0);
+    ctx.lineTo(x + h, h);
+    ctx.stroke();
+  }
+  ctx.restore();
 
-        ctx.fillStyle = 'rgba(255, 248, 210, 0.4)';
-        ctx.beginPath();
-        ctx.moveTo(i + 11, h);
-        ctx.lineTo(i + h + 11, 0);
-        ctx.lineTo(i + h + 15, 0);
-        ctx.lineTo(i + 15, h);
-        ctx.closePath();
-        ctx.fill();
-    }
-
-    // Gold foil texture
-    for (let n = 0; n < w * h / 40; n++) {
-        ctx.fillStyle = Math.random() < 0.5
-            ? 'rgba(255,255,255,0.22)'
-            : 'rgba(80,45,0,0.22)';
-
-        ctx.fillRect(
-            Math.random() * w,
-            Math.random() * h,
-            1.5,
-            1.5
-        );
-    }
-  // inner border
-  ctx.strokeStyle = 'rgba(80,45,0,.55)'; ctx.lineWidth = 3; ctx.strokeRect(6,6,w-12,h-12);
+  // Thin inner border
+  ctx.strokeStyle = "rgba(255,245,190,0.75)";
+  ctx.lineWidth = 2;
+  ctx.strokeRect(9, 9, w - 18, h - 18);
 }
+
+
 function pos(e){
   const r = canvas.getBoundingClientRect(), t = e.touches ? e.touches[0] : e;
   return { x: t.clientX - r.left, y: t.clientY - r.top };
@@ -174,7 +197,7 @@ function scratch(e) {
     ctx.globalCompositeOperation = 'destination-out';
     ctx.globalAlpha = 1;
     ctx.beginPath();
-    ctx.arc(p.x, p.y, 45, 0, Math.PI * 2);
+    ctx.arc(p.x, p.y, 18, 0, Math.PI * 2);
     ctx.fill();
 
     hint.classList.add('hide');

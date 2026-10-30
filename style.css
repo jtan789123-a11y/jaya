@@ -326,10 +326,10 @@ h1 span {
 .prize span {
   display: inline-block;
   padding: 7px 12px;
-  border: 1px solid rgba(41,195,143,.35);
+  border: 1px solid #d7c763;;
   border-radius: 8px;
   background: rgba(10,91,67,.42);
-  color: #54e2b3;
+  color: #d7c763;
   font-size: clamp(10px, 2.7vw, 12px);
   font-weight: 800;
   letter-spacing: .4px;

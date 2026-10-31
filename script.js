@@ -313,3 +313,93 @@ const modalObserver = new MutationObserver(() => {
 });
 modalObserver.observe(overlay, {attributes:true,attributeFilter:['class']});
 addEventListener('keydown', e => { if (e.key==='Escape' && overlay.classList.contains('open')) $('close').click(); });
+
+/* ===== REGISTER BUTTON ANIMATION ===== */
+
+(function () {
+  const btn = document.getElementById("register");
+
+  if (!btn) return;
+
+  const reduceMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
+
+  if (reduceMotion) return;
+
+  // Smooth gold shine when hovering
+  btn.addEventListener("mouseenter", () => {
+    btn.animate(
+      [
+        {
+          transform: "translateY(0) scale(1)",
+          boxShadow: "0 4px 12px rgba(0,0,0,0.18)"
+        },
+        {
+          transform: "translateY(-3px) scale(1.025)",
+          boxShadow:
+            "0 8px 22px rgba(0,0,0,0.3), 0 0 18px rgba(243,199,106,0.25)"
+        }
+      ],
+      {
+        duration: 280,
+        easing: "ease-out",
+        fill: "forwards"
+      }
+    );
+  });
+
+  // Return to original position
+  btn.addEventListener("mouseleave", () => {
+    btn.getAnimations().forEach(animation => animation.cancel());
+
+    btn.animate(
+      [
+        { transform: "translateY(-3px) scale(1.025)" },
+        { transform: "translateY(0) scale(1)" }
+      ],
+      {
+        duration: 250,
+        easing: "ease-out"
+      }
+    );
+  });
+
+  // Click feedback without interrupting navigation
+  btn.addEventListener("pointerdown", () => {
+    btn.animate(
+      [
+        { transform: "scale(1)" },
+        { transform: "scale(0.96)" }
+      ],
+      {
+        duration: 130,
+        easing: "ease-out"
+      }
+    );
+  });
+})();
+
+/* ===== REOPEN RM99 POPUP ON EVERY CLICK ===== */
+
+(() => {
+  const skipBtn = document.getElementById("skip");
+  const overlay = document.getElementById("overlay");
+  const closeBtn = document.getElementById("close");
+
+  if (!skipBtn || !overlay) return;
+
+  // Open popup every time the button is clicked
+  skipBtn.addEventListener("click", () => {
+    overlay.classList.add("open");
+    overlay.setAttribute("aria-hidden", "false");
+  });
+
+  // Close popup without disabling the Skip button
+  if (closeBtn) {
+    closeBtn.addEventListener("click", () => {
+      overlay.classList.remove("open");
+      overlay.setAttribute("aria-hidden", "true");
+    });
+  }
+})();

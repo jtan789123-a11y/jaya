@@ -1,38 +1,57 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
   <title>JK99 Promotion</title>
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-TPN635LG');</script>
-<!-- End Google Tag Manager -->
-<!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '2109251286495407');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=2109251286495407&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
-</head>
 
+  <!-- META PIXEL -->
+  <script>
+    !function(f,b,e,v,n,t,s) {
+      if(f.fbq)return;
+
+      n=f.fbq=function() {
+        n.callMethod
+          ? n.callMethod.apply(n,arguments)
+          : n.queue.push(arguments);
+      };
+
+      if(!f._fbq)f._fbq=n;
+
+      n.push=n;
+      n.loaded=!0;
+      n.version='2.0';
+      n.queue=[];
+
+      t=b.createElement(e);
+      t.async=!0;
+      t.src=v;
+
+      s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s);
+
+    }(
+      window,
+      document,
+      'script',
+      'https://connect.facebook.net/en_US/fbevents.js'
+    );
+
+    // NEW META PIXEL ID
+    fbq('init', '1964069838333443');
+
+    // TRACK PAGE VIEW
+    fbq('track', 'PageView');
+
+  </script>
+  <!-- END META PIXEL -->
 
 
   <style>
@@ -56,6 +75,8 @@ src="https://www.facebook.com/tr?id=2109251286495407&ev=PageView&noscript=1"
       display: flex;
       justify-content: center;
       align-items: center;
+
+      font-family: Arial, sans-serif;
     }
 
     /* VIDEO CONTAINER */
@@ -75,15 +96,17 @@ src="https://www.facebook.com/tr?id=2109251286495407&ev=PageView&noscript=1"
     /* CLICKABLE VIDEO */
 
     .video-link {
-      width: 100%;
-      height: 100%;
+      display: block;
 
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      max-width: 100%;
+      max-height: 100%;
 
       cursor: pointer;
       text-decoration: none;
+
+      line-height: 0;
+
+      -webkit-tap-highlight-color: transparent;
     }
 
     /* VIDEO DISPLAY */
@@ -92,10 +115,10 @@ src="https://www.facebook.com/tr?id=2109251286495407&ev=PageView&noscript=1"
       display: block;
 
       width: auto;
-      height: auto;
+      height: 100vh;
+      height: 100dvh;
 
       max-width: 100vw;
-      max-height: 100vh;
       max-height: 100dvh;
 
       object-fit: contain;
@@ -113,12 +136,17 @@ src="https://www.facebook.com/tr?id=2109251286495407&ev=PageView&noscript=1"
       }
 
       .video-link video {
-        max-width: 100%;
+        max-width: 100vw;
         max-height: 100dvh;
 
         object-fit: contain;
       }
 
+    }
+
+    .video-link:focus-visible {
+      outline: 3px solid #ffd700;
+      outline-offset: -3px;
     }
 
   </style>
@@ -127,17 +155,26 @@ src="https://www.facebook.com/tr?id=2109251286495407&ev=PageView&noscript=1"
 
 
 <body>
-  <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TPN635LG"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
+
+  <!-- META PIXEL NOSCRIPT -->
+
+  <noscript>
+    <img
+      height="1"
+      width="1"
+      style="display:none"
+      src="https://www.facebook.com/tr?id=1964069838333443&amp;ev=PageView&amp;noscript=1"
+      alt=""
+    >
+  </noscript>
+
 
   <!-- MAIN LANDING PAGE -->
 
   <div class="video-container">
 
     <a
-      id="register-link"
+      id="video-link"
       class="video-link"
 
       href="https://jayakaya99b.com/RFJK-FB001"
@@ -145,20 +182,33 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       target="_blank"
       rel="noopener noreferrer"
 
-      aria-label="Visit JK99 Registration"
+      aria-label="Open JK99 Registration"
     >
+
       <video
-    id="heroVideo"
-    autoplay
-    muted
-    loop
-    playsinline
-    webkit-playsinline
-    preload="auto"
->
-    <source src="poster.mp4" type="video/mp4">
-    Your browser does not support the video.
-</video>
+        id="heroVideo"
+
+        autoplay
+        muted
+        loop
+
+        playsinline
+        webkit-playsinline
+
+        preload="auto"
+
+        disablepictureinpicture
+        disableremoteplayback
+      >
+
+        <source
+          src="poster.mp4"
+          type="video/mp4"
+        >
+
+        Your browser does not support the video.
+
+      </video>
 
     </a>
 
@@ -166,6 +216,106 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <!-- END LANDING PAGE -->
 
-</body>
 
+  <script>
+
+    /* VIDEO AUTOPLAY */
+
+    const video =
+      document.getElementById("heroVideo");
+
+    video.muted = true;
+    video.defaultMuted = true;
+
+    video.setAttribute("muted", "");
+    video.setAttribute("playsinline", "");
+
+    function startVideo() {
+
+      if (!video.paused) return;
+
+      const playPromise = video.play();
+
+      if (
+        playPromise &&
+        typeof playPromise.catch === "function"
+      ) {
+
+        playPromise.catch(error => {
+          console.log(
+            "Autoplay prevented:",
+            error
+          );
+        });
+
+      }
+
+    }
+
+    if (document.readyState === "loading") {
+
+      document.addEventListener(
+        "DOMContentLoaded",
+        startVideo
+      );
+
+    } else {
+
+      startVideo();
+
+    }
+
+    video.addEventListener(
+      "canplay",
+      startVideo,
+      { once: true }
+    );
+
+    document.addEventListener(
+      "visibilitychange",
+      function() {
+
+        if (!document.hidden && video.paused) {
+          startVideo();
+        }
+
+      }
+    );
+
+
+    /* META PIXEL LEAD TRACKING */
+
+    const videoLink =
+      document.getElementById("video-link");
+
+    videoLink.addEventListener(
+      "click",
+      function() {
+
+        // Trigger Lead when the video is clicked
+        if (typeof fbq === "function") {
+
+          fbq(
+            "trackSingle",
+            "1964069838333443",
+            "Lead",
+            {
+              content_name: "JK99 Video Click",
+              content_category: "Landing Page",
+              button_name: "Video Registration Click"
+            }
+          );
+
+          console.log(
+            "Meta Pixel Lead triggered: Video Click"
+          );
+
+        }
+
+      }
+    );
+
+  </script>
+
+</body>
 </html>
